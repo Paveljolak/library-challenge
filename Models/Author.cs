@@ -1,11 +1,20 @@
-﻿namespace libraryChallenge.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
+namespace libraryChallenge.Models;
+
+[Table("authors", Schema = "library_db")]
 public class Author
 {
+    [Column("id")]
     public int Id { get; set; }
-    public string Name { get; set; } = null!; // null! -> to shut up null warnings.
+    
+    [Column("name")]
+    public string Name { get; set; } = null!;
+    
+    [Column("dateofbirth")]
     public DateTime DateOfBirth { get; set; }
 
-    public List<Book> Books { get; set; } = new(); // used to define one-to-many relationship. Do I know why? Noup.
-
+    [JsonIgnore]
+    public List<Book> Books { get; set; } = new();
 }
