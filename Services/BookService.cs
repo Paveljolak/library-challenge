@@ -31,22 +31,64 @@ public class BookService : IBookService
 
     public void AddBook(Book book)
     {
-        if (book == null)
+        if (book == null || string.IsNullOrEmpty(book.Title) || book.PublicationYear == 0 || book.AuthorId == 0)
         {
-            throw new ArgumentException("Invalid book data.");
+            var message = string.Empty;
+            if (book == null)
+            {
+                message = "Book not found";
+            }
+            else if (string.IsNullOrEmpty(book.Title))
+            {
+                message = "Title not found";
+            }
+            else if (book.PublicationYear == 0)
+            {
+                message = "Publication Year not found.";
+            }
+            else if (book.AuthorId == 0)
+            {
+                message = "Author Id was not found.";
+            }
+
+            throw new ArgumentException(message);
         }
+
         _bookRepository.AddBook(book);
     }
 
     public void UpdateBook(int id, Book book)
     {
+        if (book == null || string.IsNullOrEmpty(book.Title) || book.PublicationYear == 0 || book.AuthorId == 0)
+        {
+            var message = string.Empty;
+            if (book == null)
+            {
+                message = "Book not found";
+            }
+            else if (string.IsNullOrEmpty(book.Title))
+            {
+                message = "Title not found";
+            }
+            else if (book.PublicationYear == 0)
+            {
+                message = "Publication Year not found.";
+            }
+            else if (book.AuthorId == 0)
+            {
+                message = "Author Id was not found.";
+            }
+
+            throw new ArgumentException(message);
+        }
+
         var existingBook = _bookRepository.GetBookById(id);
 
         if (existingBook == null)
         {
             throw new Exception("Book not found");
         }
-        
+
         existingBook.Title = book.Title;
         existingBook.PublicationYear = book.PublicationYear;
         existingBook.AuthorId = book.AuthorId;
@@ -62,7 +104,7 @@ public class BookService : IBookService
         {
             throw new Exception("Book not found");
         }
-        
+
         _bookRepository.DeleteBook(id);
     }
 }

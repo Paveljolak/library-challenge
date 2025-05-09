@@ -35,10 +35,6 @@ namespace libraryChallenge.Controllers
             try
             {
                 var book = _bookService.GetBookById(id);
-                if (book == null)
-                {
-                    return NotFound(new { message = "Book not found" });
-                }
 
                 return Ok(book);
             }

@@ -9,7 +9,7 @@ public class Book
 {
     [Column("id")] public int Id { get; set; }
 
-    [Column("title")] public string Title { get; set; } = null!;
+    [Column("title")] public string Title { get; set; }
 
     [Column("publicationyear")] public int PublicationYear { get; set; }
 

@@ -26,13 +26,15 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpPost]
     public IActionResult AddAuthor([FromBody] Author author)
     {
-        if (author == null || string.IsNullOrWhiteSpace(author.Name) || author.DateOfBirth == null)
+        try
         {
-            return BadRequest("Invalid author data.");
+            author.DateOfBirth = DateTime.SpecifyKind(author.DateOfBirth, DateTimeKind.Utc);
+            authorService.AddAuthor(author);
+            return Ok(author);
         }
-
-        author.DateOfBirth = DateTime.SpecifyKind(author.DateOfBirth, DateTimeKind.Utc);
-        authorService.AddAuthor(author);
-        return Ok(author);
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
