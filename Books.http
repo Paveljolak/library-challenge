@@ -1,0 +1,47 @@
+﻿### Testing Endpoints for Books 
+
+### Get All Books (Paginated)
+GET http://localhost:5000/books?page=1&pageSize=10
+Accept: application/json
+
+###
+
+### Get Book by ID
+GET http://localhost:5000/books/1
+Accept: application/json
+
+###
+
+### Search Books by Title (Fuzzy Search)
+GET http://localhost:5000/books/search?title=Harry%20Potter&maxResults=5
+Accept: application/json
+
+###
+
+### Add a New Book
+POST http://localhost:5000/books
+Content-Type: application/json
+
+{
+  "title": "Some new book I added",
+  "publicationYear": 2025,
+  "authorId": 2 
+}
+
+###
+
+### Update Book by ID
+PUT http://localhost:5000/books/1
+Content-Type: application/json
+
+{
+  "title": "Some book I updated",
+  "publicationYear": 2024,
+  "authorId": 2
+}
+
+###
+
+### Delete Book by ID
+DELETE http://localhost:5000/books/1
+Accept: application/json

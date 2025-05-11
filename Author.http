@@ -1,0 +1,27 @@
+﻿### Testing Endpoints for Author
+
+### Get All Authors
+GET http://localhost:5000/authors
+Accept: application/json
+
+###
+
+### Add a New Author
+POST http://localhost:5000/authors
+Content-Type: application/json
+
+{
+  "name": "Some Author",
+  "dateOfBirth": "1990-09-21T00:00:00Z"
+}
+
+
+
+### Data Validation for adding Authors 
+POST http://localhost:5000/authors
+Content-Type: application/json
+
+{
+"name": "",
+"dateOfBirth": "1990-09-21T00:00:00Z"
+}
