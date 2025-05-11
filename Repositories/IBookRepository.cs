@@ -10,5 +10,7 @@ public interface IBookRepository
     void UpdateBook(int id, Book book);
     void DeleteBook(int id);
 
+    List<Book> SearchBooksByTitle(string title, int maxResults);
+
 
 }

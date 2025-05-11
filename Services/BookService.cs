@@ -29,6 +29,11 @@ public class BookService : IBookService
         return book;
     }
 
+    public List<Book> SearchBooksByTitle(string title, int maxResults)
+    {
+        return _bookRepository.SearchBooksByTitle(title, maxResults);
+    }
+
     public void AddBook(Book book)
     {
         if (book == null || string.IsNullOrEmpty(book.Title) || book.PublicationYear == 0 || book.AuthorId == 0)

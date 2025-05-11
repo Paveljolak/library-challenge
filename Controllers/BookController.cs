@@ -44,6 +44,20 @@ namespace libraryChallenge.Controllers
             }
         }
 
+
+        [HttpGet("search")]
+        public ActionResult<List<Book>> SearchBooksByTitle(string title, int maxResults)
+        {
+            var books = _bookService.SearchBooksByTitle(title, maxResults);
+            if (books == null || books.Count == 0)
+            {
+                return NotFound("No books found with the given title.");
+            }
+
+            return Ok(books);
+        }
+
+
         [HttpPost]
         public ActionResult AddBook([FromBody] Book book)
         {
