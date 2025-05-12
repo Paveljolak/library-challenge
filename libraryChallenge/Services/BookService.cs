@@ -62,6 +62,7 @@ public class BookService : IBookService
         _bookRepository.AddBook(book);
     }
 
+    // Some test
     public void UpdateBook(int id, Book book)
     {
         if (book == null || string.IsNullOrEmpty(book.Title) || book.PublicationYear == 0 || book.AuthorId == 0)
