@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react';
 import '../styles/BookList.css';
 
 const BooksList = () => {
-  // State to store books and pagination info
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [hasNextPage, setHasNextPage] = useState(true);
   const [error, setError] = useState(null);
+  const pageSize = 10;
 
-  // Fetch books on page load or when page changes
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/books?page=1&pageSize=15`); // TODO: Fix pagination
-        // TODO: Fix pagination here
+        const response = await fetch(`http://localhost:5000/books?page=${page}&pageSize=${pageSize}`);
         if (!response.ok) throw new Error('Failed to fetch books');
         const data = await response.json();
-        console.log(data);
         setBooks(data);
+        checkNextPage(page + 1);
       } catch (err) {
         setError(err.message);
       }
@@ -26,11 +24,23 @@ const BooksList = () => {
   }, [page]);
 
 
-  // TODO: Needs to be fixed.
-  // Handle page change 
-  const handlePageChange = (newPage) => {
-    if (newPage < 1 || newPage > totalPages) return;
-    setPage(newPage);
+   const handlePageChange = (newPage) => {
+    if (newPage < 1) return;  // Prevent going beyond available pages
+    setPage(newPage); 
+    };
+
+
+   // Check the next page for available books
+  const checkNextPage = async (nextPage) => {
+    const response = await fetch(`http://localhost:5000/books?page=${nextPage}&pageSize=${pageSize}`);
+    const data = await response.json();
+
+    // If the next page is empty then we are at the last page.
+    if (data.length === 0 ) {
+      setHasNextPage(false); // Disable next button
+    } else {
+      setHasNextPage(true); // Enable next button
+    }
   };
 
   return (
@@ -58,18 +68,21 @@ const BooksList = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls NEEDS TO BE FIXED*/}
+      {/* Pagination Controls */}
       <div className="pagination">
         <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
           Prev
         </button>
-        <span>Page {page} of {totalPages}</span>
-        <button onClick={() => handlePageChange(page + 1)} disabled={page === totalPages}>
+        <span>Page {page}</span>
+        <button 
+          onClick={() => handlePageChange(page + 1)} 
+          disabled={!hasNextPage} // Disable next button if no more pages are available
+        >
           Next
         </button>
       </div>
     </div>
   );
-};
+}; 
 
 export default BooksList;
