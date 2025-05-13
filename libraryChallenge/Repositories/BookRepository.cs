@@ -19,7 +19,7 @@ public class BookRepository : IBookRepository
     public List<Book> GetAllBooks(int page, int pageSize)
     {
         var skip = (page - 1) * pageSize;
-        return _context.Books.Skip(skip).Take(pageSize).ToList();
+        return _context.Books.OrderBy(b => b.Id).Skip(skip).Take(pageSize).ToList();
     }
 
     public Book GetBookById(int id)
