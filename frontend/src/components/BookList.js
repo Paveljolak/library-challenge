@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/BookList.css';
 import BookForm from './BookForm.js';
+import AuthorManager from './AuthorManager';
 
 const BooksList = () => {
   const [books, setBooks] = useState([]);
@@ -9,6 +10,7 @@ const BooksList = () => {
   const [hasNextPage, setHasNextPage] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [bookToEdit, setBookToEdit] = useState(null);
+  const [showAuthorManager, setShowAuthorManager] = useState(false);
   const [error, setError] = useState(null);
   const pageSize = 10;
 
@@ -119,12 +121,39 @@ const BooksList = () => {
     }
   };
 
+
+  const handleAddAuthor = async (authorData) => {
+  try {
+    const response = await fetch('http://localhost:5000/authors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(authorData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to add author');
+    }
+
+    const newAuthor = await response.json();
+
+    setAuthors((prev) => ({
+      ...prev,
+      [newAuthor.id]: newAuthor.name,
+    }));
+  } catch (error) {
+    console.error('Error adding author:', error);
+  }
+};
+
+
   return (
     <div>
       <h1>Books List</h1>
       {error && <div className="error">{error}</div>}
 
       <button onClick={handleAddBook}>Add New Book</button>
+      <button onClick={() => setShowAuthorManager(true)}>Add Author</button>
+
 
       {(isAdding || bookToEdit) && (
         <BookForm
@@ -134,6 +163,15 @@ const BooksList = () => {
           authors={authors}
         />
       )}
+
+      {showAuthorManager && (
+  <AuthorManager
+    authors={authors}
+    onClose={() => setShowAuthorManager(false)}
+    onAddAuthor={handleAddAuthor}
+  />
+)}
+
 
       <table>
         <thead>

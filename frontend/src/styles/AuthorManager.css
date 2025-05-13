@@ -1,0 +1,11 @@
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
