@@ -1,0 +1,30 @@
+.search-container {
+  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-results {
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-results li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-results li:last-child {
+  border-bottom: none;
+}

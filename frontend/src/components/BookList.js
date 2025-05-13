@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/BookList.css';
 import BookForm from './BookForm.js';
 import AuthorManager from './AuthorManager';
+import BookSearchBar from '../components/BookSearchBar';
 
 const BooksList = () => {
   const [books, setBooks] = useState([]);
@@ -171,8 +172,10 @@ const BooksList = () => {
     onAddAuthor={handleAddAuthor}
   />
 )}
-
-
+    <div>
+      <h1>Book Search</h1>
+      <BookSearchBar />
+    </div>
       <table>
         <thead>
           <tr>
