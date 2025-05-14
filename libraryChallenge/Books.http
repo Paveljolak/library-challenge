@@ -23,7 +23,7 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "title": "Some new book I added",
+  "title": "Analysis 1",
   "publicationYear": 2025,
   "authorId": 2 
 }
@@ -35,7 +35,7 @@ PUT http://localhost:5000/books/1
 Content-Type: application/json
 
 {
-  "title": "Some book I updated",
+  "title": "Systems 1",
   "publicationYear": 2024,
   "authorId": 2
 }
@@ -43,5 +43,6 @@ Content-Type: application/json
 ###
 
 ### Delete Book by ID
-DELETE http://localhost:5000/books/1
+DELETE http://localhost:5000/books/39
 Accept: application/json
+
