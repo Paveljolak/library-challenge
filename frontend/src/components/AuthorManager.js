@@ -50,8 +50,10 @@ const AuthorManager = ({ authors, onClose, onAddAuthor }) => {
               max={new Date().toISOString().split('T')[0]}
             />
           </div>
+          <div className="modal-actions">
           <button type="submit">Add Author</button>
           <button type="button" onClick={onClose}>Close</button>
+          </div>
         </form>
       </div>
     </div>

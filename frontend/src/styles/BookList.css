@@ -1,17 +1,118 @@
-.error {
-  color: red;
-  margin: 10px 0;
+/* Container */
+.container {
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #f9f9f9;
+  font-family: sans-serif;
+  overflow-x: auto;
 }
 
+/* Header */
+h1 {
+  color: #004ea8;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+/* Error Message */
+.error {
+  color: #f00;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  margin-left: 5px;
+  border: none;
+  background-color: #004ea8;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+}
+
+button:hover {
+  background-color: #1182cf;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Table Wrapper (Optional if table overflows container) */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Table Styles */
+table {
+  width: 95%;
+  table-layout: fixed; 
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-left: 5px;
+  margin-right: auto;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Header Styling */
+th {
+  padding-left: 3px;
+  background-color: #004ea8;
+  color: #ffffff;
+}
+
+/* Cell Text Color */
+td {
+  color: #333;
+}
+
+/* Limit column widths */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 10%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 10%;
+}
+
+th:last-child,
+td:last-child {
+  width: 5%;
+}
+
+/* Pagination */
 .pagination {
   margin-top: 20px;
-}
-
-.pagination button {
-  padding: 5px 10px;
-  margin: 0 5px;
+  display: flex;
+  align-items: center;
 }
 
 .pagination span {
-  margin: 0 10px;
+  font-weight: bold;
+  color: #004ea8;
 }

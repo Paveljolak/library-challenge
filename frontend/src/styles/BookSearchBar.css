@@ -1,14 +1,15 @@
 .search-container {
-  position: relative;
-  max-width: 400px;
-  margin: 20px auto;
+  top: 20px;
+  left: 20px;
+  border-radius: 4px;
+  max-width: 350px;
+  margin: 5px;
 }
 
 .search-container input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .search-results {

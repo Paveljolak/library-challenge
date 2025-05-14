@@ -62,11 +62,13 @@ const BookForm = ({ bookToEdit, onSave, onCancel, authors }) => {
               ))}
             </select>
           </div>
+          <div className="modal-actions">
           <button type="submit">{bookToEdit ? 'Update Book' : 'Add Book'}</button>
           <button type="button" onClick={onCancel}>Cancel</button>
+          </div>
         </form>
-      </div>
-    </div>
+      </div> 
+    </div> 
   );
 };
 
